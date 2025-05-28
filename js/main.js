@@ -3,18 +3,6 @@ const navLinks = document.querySelector('.nav-links');
 let screenWidth = window.innerWidth;
 
 
-//! event to toggle navbar 
-// let navIsHidden = false;
-// bars.on('click', () => {
-//     navLinks.slideToggle(1000);
-//     navIsHidden = true;
-// })
-// $(window).on('resize', () => {
-//     if (screenWidth > 767) {
-//         navLinks.css({ dispaly: 'flex', flexDirection: 'row' })
-//     }
-// })
-
 //  prevent Default form from reloade
 let forms = $('form')
 forms.on('submit', function (e) {
@@ -31,8 +19,45 @@ const otherLinks = document.getElementById('otherLinks');
 const megaMenue = document.querySelector('.mega-menue');
 const closeMegaMenue = document.querySelector('.mega-menue .close');
 const megaMenueLinks = Array.from(document.querySelectorAll('.mega-links a'));
+
 let isShown = false
 
+
+
+
+
+// * function to show meaga menue 
+function showMegaMenue() {
+    // *event for all links in mega menu to close meagmenu when click on it
+    megaMenueLinks.forEach(element => {
+        element.addEventListener('click', () => {
+            hideMegaMenue();
+        })
+    });
+    megaMenue.style.opacity = '1';
+    megaMenue.style.zIndex = '100';
+    megaMenue.style.top = 'calc(100% + 2px)';
+    isShown = true;
+}
+// * function to hide meaga menue 
+function hideMegaMenue() {
+    megaMenue.style.opacity = '0';
+    megaMenue.style.top = 'calc(100% + 50px)';
+    setTimeout(() => {
+        megaMenue.style.display = 'none';
+    }, 300)
+    isShown = false;
+}
+//  event to asoliate the event megamenue form close it from click on window
+megaMenue.addEventListener('click', (event) => {
+    event.stopPropagation()
+})
+// event to cloce mega menue when click on window exept megamenue
+window.addEventListener('click', () => {
+    if (isShown) {
+        hideMegaMenue();
+    }
+})
 // *event to close meagmenue after click on link in megamenue
 otherLinks.addEventListener('click', (event) => {
     event.preventDefault()
@@ -43,28 +68,6 @@ megaMenue.addEventListener('click', (event) => {
     event.stopPropagation();
 })
 function megaMenueToggle() {
-    // * function to show meaga menue 
-    function showMegaMenue() {
-        // *event for all links in mega menu to close meagmenu when click on it
-        megaMenueLinks.forEach(element => {
-            element.addEventListener('click', () => {
-                hideMegaMenue();
-            })
-        });
-        megaMenue.style.opacity = '1';
-        megaMenue.style.zIndex = '100';
-        megaMenue.style.top = 'calc(100% + 2px)';
-        isShown = true;
-    }
-    // * function to hide meaga menue 
-    function hideMegaMenue() {
-        megaMenue.style.opacity = '0';
-        megaMenue.style.top = 'calc(100% + 50px)';
-        setTimeout(() => {
-            megaMenue.style.display = 'none';
-        }, 300)
-        isShown = false;
-    }
     if (isShown == false) {
         megaMenue.style.display = 'flex';
         setTimeout(() => {
@@ -80,8 +83,9 @@ function megaMenueToggle() {
         hideMegaMenue()
         setTimeout(() => {
             megaMenue.style.display = 'none';
-        }, 300)
+        }, 300) // 300 is the tranisition of opicity and position top
     }
+
 }
 // ? function to get count down 
 
