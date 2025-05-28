@@ -123,19 +123,3 @@ var x = setInterval(function () {
 
 
 
-
-
-
-
-
-// // Observer for all counters
-// const observer = new IntersectionObserver((entries) => {
-//   entries.forEach(startCounter);
-// }, {
-//   threshold: 0.6
-// });
-
-// // Apply observer to each counter
-// document.querySelectorAll(".counter").forEach(counter => {
-//   observer.observe(counter);
-// });
