@@ -15,9 +15,8 @@ let screenWidth = window.innerWidth;
 //     }
 // })
 
-
+//  prevent Default form from reloade
 let forms = $('form')
-
 forms.on('submit', function (e) {
     e.preventDefault()
 })
@@ -27,17 +26,21 @@ bars.addEventListener('click', () => {
     navLinks.classList.toggle('nav-links-shown');
 })
 
-
-
 // ! event to hide and show mega menue ;;;
 const otherLinks = document.getElementById('otherLinks');
 const megaMenue = document.querySelector('.mega-menue');
 const closeMegaMenue = document.querySelector('.mega-menue .close');
 const megaMenueLinks = Array.from(document.querySelectorAll('.mega-links a'));
 let isShown = false
+
+// *event to close meagmenue after click on link in megamenue
 otherLinks.addEventListener('click', (event) => {
     event.preventDefault()
     megaMenueToggle()
+})
+// *event to isolate meaga menue from window
+megaMenue.addEventListener('click', (event) => {
+    event.stopPropagation();
 })
 function megaMenueToggle() {
     // * function to show meaga menue 
@@ -80,10 +83,7 @@ function megaMenueToggle() {
         }, 300)
     }
 }
-
-
-
-
+// ? function to get count down 
 
 // Set the date we're counting down to
 var countDownDate = new Date("Nov 5, 2025 15:37:25").getTime();
