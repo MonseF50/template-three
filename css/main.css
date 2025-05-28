@@ -601,6 +601,7 @@ header .mega-menue .mega-links li a i {
 .gallery {
   padding-block: var(--main-sectiton-padding);
   background-color: var(--bg-section);
+  overflow: hidden;
 }
 .gallery-container {
   display: grid;
